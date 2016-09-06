@@ -53,6 +53,26 @@
               "Key": ".env"
             }
          }
+      },
+
+      "MyConfigFromJson": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "Json": {
+                "key1": {
+                  "key2": "foo"
+                },
+                "key3": "boo"
+              }
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": "config.json"
+            }
+         }
       }
     },
     "Outputs": {

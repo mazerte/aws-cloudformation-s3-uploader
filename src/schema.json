@@ -8,15 +8,32 @@
   "properties": {
     "Source": {
       "type": "object",
-      "additionalProperties": false,
-      "properties": {
-        "Url": {
-          "type": "string"
-        },
-        "Body": {
-          "type": "string"
+      "oneOf": [{
+        "required": ["Url"],
+        "additionalProperties": false,
+        "properties": {
+          "Url": {
+            "type": "string"
+          }
         }
-      }
+      }, {
+        "required": ["Body"],
+        "additionalProperties": false,
+        "properties": {
+          "Body": {
+            "type": "string"
+          }
+        }
+      }, {
+        "required": ["Json"],
+        "additionalProperties": false,
+        "properties": {
+          "Json": {
+            "type": "object",
+            "additionalProperties": true
+          }
+        }
+      }]
     },
     "Destination": {
       "type": "object",
