@@ -14,6 +14,10 @@
         "properties": {
           "Url": {
             "type": "string"
+          },
+          "Unzip": {
+            "type": "string",
+            "enum": ["true", "false"]
           }
         }
       }, {

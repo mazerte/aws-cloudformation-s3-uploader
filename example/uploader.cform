@@ -37,6 +37,22 @@
          }
       },
 
+      "MyConfigFromHTTPZip": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "Url": "https://github.com/mazerte/aws-cloudformation-s3-uploader/archive/master.zip",
+              "Unzip": "true"
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": "zip/"
+            }
+         }
+      },
+
       "MyConfigFromContent": {
          "Type": "Custom::S3Uploader",
          "Version": "1.0",

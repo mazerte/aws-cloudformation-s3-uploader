@@ -10,8 +10,14 @@
   "author": "Mathieu Desvé <mathieu.desve@me.com>",
   "license": "ISC",
   "dependencies": {
+    "adm-zip": "^0.4.7",
+    "async": "^2.0.1",
     "aws-sdk": "^2.5.3",
     "cfn-lambda": "^0.8.3",
-    "request": "^2.74.0"
+    "request": "^2.74.0",
+    "tmp": "0.0.28",
+    "underscore": "^1.8.3",
+    "unzip": "^0.1.11",
+    "uuid": "^2.0.2"
   }
 }
