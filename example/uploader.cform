@@ -1,0 +1,63 @@
+{
+    "AWSTemplateFormatVersion": "2010-09-09",
+    "Description": "Example of S3 Uploader",
+    "Metadata": {
+
+    },
+    "Parameters": {
+      "S3UploaderLambdaName": {
+          "Description": "S3Uploader lambda name",
+          "Type": "String"
+      }
+    },
+    "Mappings": {
+
+    },
+    "Conditions": {
+
+    },
+    "Resources": {
+      "MyBucket": {
+        "Type": "AWS::S3::Bucket",
+        "Properties": {}
+      },
+
+      "MyConfigFromHTTP": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "Url": "http://keenthemes.com/preview/metronic/theme/assets/global/plugins/jcrop/demos/demo_files/image1.jpg"
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": "imgs/image.png"
+            }
+         }
+      },
+
+      "MyConfigFromContent": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "Body": {"Fn::Join" : ["\n",[
+                "VARIABLE_1=foo",
+                "VARIABLE_2=boo"
+              ]]}
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": ".env"
+            }
+         }
+      }
+    },
+    "Outputs": {
+      "Bucket" : {
+        "Value" : { "Ref": "MyBucket" }
+      }
+    }
+}

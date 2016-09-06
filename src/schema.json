@@ -1,0 +1,71 @@
+{
+  "type": "object",
+  "required": [
+    "Source",
+    "Destination"
+  ],
+  "additionalProperties": false,
+  "properties": {
+    "Source": {
+      "type": "object",
+      "additionalProperties": false,
+      "properties": {
+        "Url": {
+          "type": "string"
+        },
+        "Body": {
+          "type": "string"
+        }
+      }
+    },
+    "Destination": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["Bucket", "Key"],
+      "properties": {
+        "Bucket": {
+          "type": "string"
+        },
+        "Key": {
+          "type": "string"
+        },
+        "ACL": {
+          "type": "string",
+          "enum": [
+            "private",
+            "public-read",
+            "public-read-write",
+            "authenticated-read",
+            "aws-exec-read",
+            "bucket-owner-read",
+            "bucket-owner-full-control"
+          ]
+        },
+        "GrantFullControl": {
+          "type": "string"
+        },
+        "GrantRead": {
+          "type": "string"
+        },
+        "GrantReadACP": {
+          "type": "string"
+        },
+        "GrantWriteACP": {
+          "type": "string"
+        },
+        "StorageClass": {
+          "type": "string",
+          "enum": [
+            "STANDARD",
+            "REDUCED_REDUNDANCY",
+            "STANDARD_IA"
+          ]
+        },
+        "Metadata": {
+          "type": "object",
+          "additionalProperties": true
+        }
+      }
+    }
+  }
+}
