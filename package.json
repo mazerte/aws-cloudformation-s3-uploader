@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "echo \"Warn: no test specified\" && exit 0",
     "cfn-lambda-deploy": "node ./node_modules/cfn-lambda/deploy.js"
   },
   "author": "Mathieu Desvé <mathieu.desve@me.com>",
@@ -13,7 +13,7 @@
     "adm-zip": "^0.4.7",
     "async": "^2.0.1",
     "aws-sdk": "^2.5.3",
-    "cfn-lambda": "^0.8.3",
+    "cfn-lambda": "git+https://github.com/mazerte/cfn-lambda.git",
     "mime": "^1.3.4",
     "request": "^2.74.0",
     "tmp": "0.0.28",
