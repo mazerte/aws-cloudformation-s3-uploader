@@ -18,6 +18,46 @@
           "Unzip": {
             "type": "string",
             "enum": ["true", "false"]
+          },
+          "ParametersRegex": {
+            "type": "string"
+          },
+          "Parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
+          }
+        }
+      }, {
+        "required": ["S3"],
+        "additionalProperties": false,
+        "properties": {
+          "S3": {
+            "type": "object",
+            "required": ["Bucket", "Key"],
+            "additionalProperties": false,
+            "properties": {
+              "Bucket": {
+                "type": "string"
+              },
+              "Key": {
+                "type": "string"
+              }
+            }
+          },
+          "Unzip": {
+            "type": "string",
+            "enum": ["true", "false"]
+          },
+          "ParametersRegex": {
+            "type": "string"
+          },
+          "Parameters": {
+            "type": "object",
+            "additionalProperties": {
+              "type": "string"
+            }
           }
         }
       }, {

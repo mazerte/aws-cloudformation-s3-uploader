@@ -89,6 +89,47 @@
               "Key": "config.json"
             }
          }
+      },
+
+      "MyConfigFromS3": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "S3": {
+                "Bucket": {
+                  "Fn::GetAtt": ["MyConfigFromJson", "Bucket"]
+                },
+                "Key": {
+                  "Fn::GetAtt": ["MyConfigFromJson", "Key"]
+                }
+              }
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": "config-copy.json"
+            }
+         }
+      },
+
+      "DynamicTest": {
+         "Type": "Custom::S3Uploader",
+         "Version": "1.0",
+         "Properties": {
+            "ServiceToken": {"Fn::Join" : [":",[ "arn:aws:lambda", { "Ref": "AWS::Region" }, { "Ref": "AWS::AccountId" }, "function", { "Ref": "S3UploaderLambdaName" } ] ]},
+            "Source": {
+              "Url": "https://gist.githubusercontent.com/mazerte/aec9394307e9a1577d143253610e7a2e/raw/Test3SUploader",
+              "ParametersRegex": "\\$\\{([A-Z_]+)\\}",
+              "Parameters": {
+                "NAME": "Mathieu"
+              }
+            },
+            "Destination": {
+              "Bucket": { "Ref": "MyBucket" },
+              "Key": "hello.txt"
+            }
+         }
       }
     },
     "Outputs": {
